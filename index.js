@@ -1,27 +1,19 @@
-const http = require('http');
-const url = require('url');
+const express = require('express');
+const app = express();
 
-//THE CALLBACKS ARE REQUEST AND RESPONSE
-//FIRST WE CREATED A SERVER USING THE CODE BELOW 
-//HTTP.CREATESERVER WHICH INCLUDES REQUEST AND RESPONSE CALLBACKS
-const server = http.createServer((request, response) =>{
-    //WE SENT 200 STATUS CODE 
-    //AND CONTENT TYPE AS HTML TEXT
-    response.writeHead(200, {'content-type': 'text/html'});
-    //RESPONSE.WRITE == BODY
-    response.write('<h1> Hello IIMS </h1>'); 
-    //RESPONSE.END MEANS END AND EXECUTE THE RESPONSES
-    response.end();
+app.get("/", function(request,response){
+    response.send("<h1>Hello World</h1>");
 })
-
-//NEED TO PROVIDE A LOCAL HOST TO RUN THE RESPONSE
-//3000 IS THE LOCAL HOST
-//CAN WRITE ANY LOCAL HOST CODE
-// server.listen(1000);  OR
-
-const port = 3000;
-server.listen(port,()=>{
-//USE ` TO SHOW ANY STRING DYANAMICALLY 
-//AND USE ${STRING} TO SHOW ANY STRING DYNAMICALLY
-    console.log(`Server is running at port: ${port}`);
+//OR
+app.get("/about",(request, response)=>{
+    response.send("This is the about page");
 });
+
+app.get("/profile", function(request,response){
+    //IF WE WANT TO ADD CUSTOMIZED STATUS CODE
+    response.status(200).json({
+        "Name" : "Norbu Lama",
+        "Location" : "Kathmandu"
+    }); 
+})
+app.listen(3000);
