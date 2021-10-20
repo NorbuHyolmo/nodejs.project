@@ -5,7 +5,7 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
+const route = require('./routes');
 
 let users = []; //id, name, email, address
 
@@ -33,7 +33,6 @@ app.get('/users/:id',(req,res)=>{
     if(!user)res.status(404).send('The user with the given ID was not found.');
     res.json(user);
 })
-
 
 // '||' MEANS EITHER GIVEN PORT OR THE 3000
 const port = process.env.PORT || 3000;
