@@ -4,7 +4,9 @@ const express=  require('express');
 const router = express.Router();
 // require({controller location}/ controller file name)
 const userController = require('../controller/user-controller');
-const hobbyController =require('../controller/hobby-controller');
+//YOU CAN ALSO DIRECTLY ASSIGN THE FUNCTION IN THE CONST 
+// SO YOU CAN CALL IT DIRECLY IN THE ROUTE 
+const {addHobby, getAll} =require('../controller/hobby-controller');
 let users = []; //id, name, email, address
 
 //-------------------------------------------------------------------------------
@@ -71,8 +73,8 @@ router.delete('/users/:id',(request,response)=>{
 
 });
 
-router.post('/hobby',hobbyController.addHobby);
-router.get('/hobby',hobbyController.getAll)
+router.post('/hobby',addHobby);
+router.get('/hobby',getAll)
 
 module.exports = router;
 //-----OR--------

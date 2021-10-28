@@ -1,9 +1,11 @@
 require('dotenv').config()
+require('./config/database')
 // WE NEED A FUNCION TO CALL GET, PATCH, ETC 
 // SO, FIRST WE SET EXPRESS FUNCTION IN A STRING APP
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const logMiddleware = require('./middleware/logger');
 
 //CALLING THE INDEX OF JS FROM THE PATH ROUTES
 const route = require('./routes');
@@ -14,12 +16,8 @@ const route = require('./routes');
 // 'next' IS USED TO PASS FROM ONE TO NEXT MIDDLEWARE 
 
 app.use(bodyParser.json());
-app.use((request,response,next)=>{
-    console.log("this is a middleware! body: ",request.body);
-    next()
-     
-})
 
+app.use(logMiddleware);
 
 app.use('/', route);
 
