@@ -10,6 +10,7 @@ const logMiddleware = require('./middleware/logger');
 //CALLING THE INDEX OF JS FROM THE PATH ROUTES
 const route = require('./routes');
 
+
 //------MIDDLEWARE---------
 // 'use' TO ACCESS THE MIDDLEWARE 
 // MIDDLEWARE IS USED TO INTERCEPT BETWEEN RES AND REQ
@@ -17,7 +18,7 @@ const route = require('./routes');
 
 app.use(bodyParser.json());
 
-app.use(logMiddleware);
+// app.use(logMiddleware);
 
 app.use('/', route);
 

@@ -1,5 +1,5 @@
 const { application } = require('express');
-const express=  require('express');
+const express =  require('express');
 //express function provides Router
 const router = express.Router();
 // require({controller location}/ controller file name)
@@ -7,17 +7,21 @@ const userController = require('../controller/user-controller');
 //YOU CAN ALSO DIRECTLY ASSIGN THE FUNCTION IN THE CONST 
 // SO YOU CAN CALL IT DIRECLY IN THE ROUTE 
 const {addHobby, getAll} =require('../controller/hobby-controller');
+
+const userValidator = require('../validator/user-validator');
+const catchValidationError = require('../handler/validation-error-handler')
+
 let users = []; //id, name, email, address
 
 //-------------------------------------------------------------------------------
 //BELOW ARE THE ROUTES
 //CRUD
 //GET ALL USERS , REQUEST METHOD: GET
-router.get('/users',userController.getAllUser);
+router.get('/users', userController.getAllUser);
 
 //-------------------------------------------------------------------------------
 //CREATE NEW USER, REQUEST METHOD: POST
-router.post('/users',userController.store);
+router.post('/users',userValidator, catchValidationError(userController.store));
 
 // //-------------------------------------------------------------------------------
 // //GET USERS BY ID, REQUEST METHOD: GET
