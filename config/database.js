@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 (async()=>{
     try{
         // await mongoose.connect('mongodb://localhost:27017/iims_training');
@@ -9,4 +10,6 @@ const mongoose = require('mongoose');
         console.error('Error during connection with mongo:', e);
     }
 })();
+
+require('../model/user');
 
